@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getWeather } from "./adapters/openweathermap";
 import "./App.css";
+import Layout from "./components/Layout.jsx";
 
 function App() {
   const [state, setState] = useState({});
@@ -13,7 +14,7 @@ function App() {
   console.log("state", state);
   return (
     <div className="App">
-      <h2>test</h2>
+      <Layout />
     </div>
   );
 }
