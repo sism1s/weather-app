@@ -4,4 +4,40 @@
   height: 712px;
   width: 561px;
   margin: 50px auto;
+  color: #ffffff;
+
+  &_details {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+
+    &-name {
+      font-size: 40px;
+    }
+    &-icon img {
+      height: 75px;
+      width: 76px;
+      margin-right: -20px;
+    }
+  }
+
+  &_main {
+    display: flex;
+    justify-content: space-evenly;
+
+    &-temp {
+      align-self: center;
+      font-size: 163px;
+    }
+
+    &-details {
+      font-size: 22px;
+      align-self: center;
+      margin-top: -10px;
+
+      p {
+        margin-bottom: 10px;
+      }
+    }
+  }
 }

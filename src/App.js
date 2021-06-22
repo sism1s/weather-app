@@ -10,15 +10,22 @@ function App() {
     name: "",
     icon: "",
     main: "",
+    wind: "",
   });
+
+  function capitalize(s) {
+    return s[0].toUpperCase() + s.slice(1);
+  }
+
   useEffect(() => {
     getWeather()
       .then((res) =>
         setData({
-          weather: res.data.weather[0].description,
+          weather: capitalize(res.data.weather[0].description),
           name: res.data.name,
           icon: res.data.weather[0].icon,
           main: res.data.main,
+          wind: res.data.wind,
         })
       )
       .catch((err) => alert(err));
