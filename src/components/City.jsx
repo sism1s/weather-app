@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./City.scss";
 
+import AddBoxIcon from "@material-ui/icons/AddBox";
+import IndeterminateCheckBoxIcon from "@material-ui/icons/IndeterminateCheckBox";
+
 function City({ data }) {
+  const [toggle, setToggle] = useState(true);
   const compassSector = [
     "N",
     "NNE",
@@ -47,6 +51,21 @@ function City({ data }) {
             {compassSector[(data.wind.deg / 22.5).toFixed(0)]}
           </p>
         </div>
+      </div>
+      <div className="city_button-container">
+        {toggle ? (
+          <IndeterminateCheckBoxIcon
+            onClick={() => setToggle(!toggle)}
+            fontSize="large"
+            style={{ cursor: "pointer" }}
+          />
+        ) : (
+          <AddBoxIcon
+            onClick={() => setToggle(!toggle)}
+            fontSize="large"
+            style={{ cursor: "pointer" }}
+          />
+        )}
       </div>
     </div>
   );
