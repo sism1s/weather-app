@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getWeather } from "./adapters/openweathermap";
+import { getWeather, getForecast } from "./adapters/openweathermap";
 import "./App.css";
 import Layout from "./components/Layout.jsx";
 import City from "./components/City.jsx";
@@ -29,6 +29,8 @@ function App() {
         })
       )
       .catch((err) => alert(err));
+
+    getForecast().then((res) => console.log(res));
   }, []);
 
   return (
