@@ -4,7 +4,7 @@ import "./City.scss";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import IndeterminateCheckBoxIcon from "@material-ui/icons/IndeterminateCheckBox";
 
-function City({ data }) {
+function City({ data, forecast }) {
   const [toggle, setToggle] = useState(true);
   const compassSector = [
     "N",
@@ -26,7 +26,14 @@ function City({ data }) {
     "N",
   ];
 
-  console.log("city", data);
+  function dayname(date) {
+    return new Date(date * 1000)
+      .toLocaleDateString("en", {
+        weekday: "long",
+      })
+      .substring(0, 3);
+  }
+
   return (
     <div className="city">
       <div className="city_details">
@@ -66,6 +73,17 @@ function City({ data }) {
             style={{ cursor: "pointer" }}
           />
         )}
+      </div>
+      <div className="city_forecast">
+        <h3>5 Day forecast</h3>
+
+        {forecast.map((forecast, i) => (
+          <div key={i}>
+            <p>{forecast && dayname(forecast.dt)}</p>
+            <p>{forecast.main?.temp}</p>
+            <p>{forecast.weather && forecast.weather[0].main}</p>
+          </div>
+        ))}
       </div>
     </div>
   );

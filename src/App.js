@@ -13,6 +13,14 @@ function App() {
     wind: "",
   });
 
+  const [forecast, setForecast] = useState([""]);
+
+  const fiveDayForecast = [""];
+
+  for (let i = 0; i < forecast.length; i += 8) {
+    fiveDayForecast.push(forecast[i]);
+  }
+
   function capitalize(s) {
     return s[0].toUpperCase() + s.slice(1);
   }
@@ -30,13 +38,13 @@ function App() {
       )
       .catch((err) => alert(err));
 
-    getForecast().then((res) => console.log(res));
+    getForecast().then((res) => setForecast(res.data.list));
   }, []);
 
   return (
     <div className="App">
       <Layout>
-        <City data={data} />
+        <City data={data} forecast={fiveDayForecast} />
       </Layout>
     </div>
   );
