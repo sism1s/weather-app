@@ -47,4 +47,31 @@
     justify-content: flex-end;
     padding-right: 30px;
   }
+
+  &_forecast {
+    border: 2px solid white;
+    border-radius: 10px;
+    margin: 5px 25px;
+    height: 290px;
+
+    &-title {
+      font-size: 30px;
+      padding-left: 10px;
+      padding-top: 20px;
+    }
+
+    &-container {
+      display: flex;
+      justify-content: space-evenly;
+
+      &-row {
+        margin: 20px;
+        font-size: 24px;
+
+        p {
+          padding-bottom: 20px;
+        }
+      }
+    }
+  }
 }

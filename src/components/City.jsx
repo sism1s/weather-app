@@ -75,15 +75,19 @@ function City({ data, forecast }) {
         )}
       </div>
       <div className="city_forecast">
-        <h3>5 Day forecast</h3>
-
-        {forecast.map((forecast, i) => (
-          <div key={i}>
-            <p>{forecast && dayname(forecast.dt)}</p>
-            <p>{forecast.main?.temp}</p>
-            <p>{forecast.weather && forecast.weather[0].main}</p>
-          </div>
-        ))}
+        <h3 className="city_forecast-title">5 Day forecast</h3>
+        <div className="city_forecast-container">
+          {forecast.map(
+            (forecast, i) =>
+              forecast && (
+                <div key={i} className="city_forecast-container-row">
+                  <p>{forecast && dayname(forecast.dt)}</p>
+                  <p>{Math.round(forecast.main?.temp)} &deg;</p>
+                  <p>{forecast.weather && forecast.weather[0].main}</p>
+                </div>
+              )
+          )}
+        </div>
       </div>
     </div>
   );
