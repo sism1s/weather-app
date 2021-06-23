@@ -1,0 +1,77 @@
+.city {
+  border: 3px solid #ffffff;
+  border-radius: 50px;
+  height: 712px;
+  width: 561px;
+  margin: 100px auto;
+  color: #ffffff;
+
+  &_details {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+
+    &-name {
+      font-size: 40px;
+    }
+    &-icon img {
+      height: 75px;
+      width: 76px;
+      margin-right: -20px;
+    }
+  }
+
+  &_main {
+    display: flex;
+    justify-content: space-evenly;
+
+    &-temp {
+      align-self: center;
+      font-size: 163px;
+    }
+
+    &-details {
+      font-size: 22px;
+      align-self: center;
+      margin-top: -10px;
+
+      p {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  &_button-container {
+    margin-top: -20px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 30px;
+  }
+
+  &_forecast {
+    border: 2px solid white;
+    border-radius: 10px;
+    margin: 5px 25px;
+    height: 290px;
+
+    &-title {
+      font-size: 30px;
+      padding-left: 10px;
+      padding-top: 20px;
+    }
+
+    &-container {
+      display: flex;
+      justify-content: space-evenly;
+
+      &-row {
+        margin: 20px;
+        font-size: 24px;
+
+        p {
+          padding-bottom: 20px;
+        }
+      }
+    }
+  }
+}
