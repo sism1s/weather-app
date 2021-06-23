@@ -15,6 +15,8 @@ function App() {
 
   const [forecast, setForecast] = useState([""]);
 
+  const [toggle, setToggle] = useState(true);
+
   const fiveDayForecast = [""];
 
   for (let i = 0; i < forecast.length; i += 8) {
@@ -37,14 +39,23 @@ function App() {
         })
       )
       .catch((err) => alert(err));
-
-    getForecast().then((res) => setForecast(res.data.list));
   }, []);
+
+  useEffect(() => {
+    toggle &&
+      getForecast().then((res) => setForecast(res.data.list)) &&
+      console.log("render");
+  }, [toggle]);
 
   return (
     <div className="App">
       <Layout>
-        <City data={data} forecast={fiveDayForecast} />
+        <City
+          data={data}
+          forecast={fiveDayForecast}
+          changeToggle={() => setToggle(!toggle)}
+          toggle={toggle}
+        />
       </Layout>
     </div>
   );
