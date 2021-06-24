@@ -1,8 +1,14 @@
+@import "./mixins.scss";
+
 .layout {
   background-color: #09095b;
   height: 1080px;
   width: 100%;
   font-family: "Nunito", sans-serif;
+
+  @include respond(phone-L) {
+    height: 100vh;
+  }
 
   .header {
     height: 148px;
@@ -11,10 +17,24 @@
     display: flex;
     align-items: center;
 
+    @include respond(phone-L) {
+      justify-content: center;
+      height: 110px;
+    }
+
     p {
       color: #ffffff;
       font-size: 60px;
       padding-left: 75px;
+
+      @include respond(phone-L) {
+        font-size: 40px;
+        padding-left: 0;
+      }
+
+      @include respond(phone-S) {
+        font-size: 30px;
+      }
     }
   }
 }

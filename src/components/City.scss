@@ -1,10 +1,4 @@
-@mixin respond($breakpoint) {
-  @if $breakpoint == phone {
-    @media only screen and (max-width: 600px) {
-      @content;
-    }
-  }
-}
+@import "./mixins.scss";
 
 .city {
   border: 3px solid #ffffff;
@@ -15,8 +9,16 @@
   color: #ffffff;
 
   @include respond(phone) {
-    width: 430px;
+    width: 80%;
     height: 650px;
+  }
+
+  @include respond(phone-L) {
+    height: 480px;
+  }
+
+  @include respond(phone-S) {
+    height: 430px;
   }
 
   &_details {
@@ -24,16 +26,33 @@
     justify-content: space-between;
     padding: 30px;
 
+    @include respond(phone-L) {
+      padding-bottom: 10px;
+    }
+
     &-name {
       font-size: 40px;
       @include respond(phone) {
         font-size: 30px;
+      }
+
+      @include respond(phone-L) {
+        font-size: 20px;
+      }
+
+      @include respond(phone-S) {
+        font-size: 17px;
       }
     }
     &-icon img {
       height: 75px;
       width: 76px;
       margin-right: -20px;
+
+      @include respond(phone-L) {
+        height: 50px;
+        width: 50px;
+      }
     }
   }
 
@@ -48,6 +67,14 @@
       @include respond(phone) {
         font-size: 130px;
       }
+
+      @include respond(phone-L) {
+        font-size: 80px;
+      }
+
+      @include respond(phone-S) {
+        font-size: 70px;
+      }
     }
 
     &-details {
@@ -57,6 +84,14 @@
 
       @include respond(phone) {
         font-size: 17px;
+      }
+
+      @include respond(phone-L) {
+        font-size: 12px;
+      }
+
+      @include respond(phone-S) {
+        font-size: 10px;
       }
 
       p {
@@ -70,6 +105,16 @@
     display: flex;
     justify-content: flex-end;
     padding-right: 30px;
+
+    @include respond(phone-L) {
+      margin-top: 0;
+    }
+
+    .MuiSvgIcon-root {
+      @include respond(phone-L) {
+        height: 20px;
+      }
+    }
   }
 
   &_forecast {
@@ -82,6 +127,14 @@
       height: 240px;
     }
 
+    @include respond(phone-L) {
+      height: 200px;
+    }
+
+    @include respond(phone-S) {
+      height: 180px;
+    }
+
     &-title {
       font-size: 30px;
       padding-left: 10px;
@@ -89,6 +142,14 @@
 
       @include respond(phone) {
         font-size: 20px;
+      }
+
+      @include respond(phone-L) {
+        font-size: 15px;
+      }
+
+      @include respond(phone-S) {
+        font-size: 13px;
       }
     }
 
@@ -104,8 +165,20 @@
           font-size: 20px;
         }
 
+        @include respond(phone-L) {
+          font-size: 15px;
+        }
+
+        @include respond(phone-S) {
+          font-size: 12px;
+        }
+
         p {
           padding-bottom: 20px;
+
+          @include respond(phone-L) {
+            padding-bottom: 15px;
+          }
         }
       }
     }
