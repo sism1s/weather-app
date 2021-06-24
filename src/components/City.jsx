@@ -4,7 +4,7 @@ import "./City.scss";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import IndeterminateCheckBoxIcon from "@material-ui/icons/IndeterminateCheckBox";
 
-function City({ data, forecast, toggle, changeToggle }) {
+function City({ data, forecast, toggle, changeToggle, loading }) {
   const compassSector = [
     "N",
     "NNE",
@@ -47,17 +47,20 @@ function City({ data, forecast, toggle, changeToggle }) {
         </div>
       </div>
       <div className="city_main">
-        <p className="city_main-temp">{Math.round(data.main.temp)}&deg;</p>
+        <p className="city_main-temp">
+          {data.main?.temp && Math.round(data.main?.temp)}&deg;
+        </p>
         <div className="city_main-details">
-          <p>Feels Like: {Math.round(data.main.feels_like)}&deg; C</p>
-          <p>Pressure: {data.main.pressure} hPa</p>
-          <p>Humidity: {data.main.humidity}%</p>
+          <p>Feels Like: {Math.round(data.main?.feels_like)}&deg; C</p>
+          <p>Pressure: {data.main?.pressure} hPa</p>
+          <p>Humidity: {data.main?.humidity}%</p>
           <p>
-            Wind: {Math.round(data.wind.speed)} km/h,{" "}
-            {compassSector[(data.wind.deg / 22.5).toFixed(0)]}
+            Wind: {Math.round(data.wind?.speed)} km/h,{" "}
+            {compassSector[(data.wind?.deg / 22.5).toFixed(0)]}
           </p>
         </div>
       </div>
+
       <div className="city_button-container">
         {toggle ? (
           <IndeterminateCheckBoxIcon

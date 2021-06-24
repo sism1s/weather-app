@@ -43,8 +43,9 @@ function App() {
 
   useEffect(() => {
     toggle &&
-      getForecast().then((res) => setForecast(res.data.list)) &&
-      console.log("render");
+      getForecast()
+        .then((res) => setForecast(res.data.list))
+        .catch((err) => alert(err));
   }, [toggle]);
 
   return (
