@@ -1,10 +1,10 @@
 import React from "react";
-import "./Layout.scss";
+import styles from "./Layout.module.scss";
 
 function Layout(props) {
   return (
-    <div className="layout">
-      <div className="header">
+    <div className={styles.layout}>
+      <div className={styles.header}>
         <p>Weather App</p>
       </div>
       {props.children}

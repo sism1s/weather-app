@@ -13,11 +13,11 @@ function App() {
     wind: "",
   });
 
-  const [forecast, setForecast] = useState([""]);
+  const [forecast, setForecast] = useState([]);
 
   const [toggle, setToggle] = useState(true);
 
-  const fiveDayForecast = [""];
+  const fiveDayForecast = [];
 
   for (let i = 0; i < forecast.length; i += 8) {
     fiveDayForecast.push(forecast[i]);

@@ -1,5 +1,5 @@
 import React from "react";
-import "./City.scss";
+import styles from "./City.module.scss";
 
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import IndeterminateCheckBoxIcon from "@material-ui/icons/IndeterminateCheckBox";
@@ -34,23 +34,23 @@ function City({ data, forecast, toggle, changeToggle, loading }) {
   }
 
   return (
-    <div className="city">
-      <div className="city_details">
-        <p className="city_details-name">
+    <div className={styles.city}>
+      <div className={styles.city_details}>
+        <p className={styles.city_details_name}>
           {data.name}, {data.weather}
         </p>
-        <div className="city_details-icon">
+        <div className={styles.city_details_icon}>
           <img
             src={`http://openweathermap.org/img/w/${data.icon}.png`}
             alt="icon"
           />
         </div>
       </div>
-      <div className="city_main">
-        <p className="city_main-temp">
+      <div className={styles.city_main}>
+        <p className={styles.city_main_temp}>
           {data.main?.temp && Math.round(data.main?.temp)}&deg;
         </p>
-        <div className="city_main-details">
+        <div className={styles.city_main_details}>
           <p>Feels Like: {Math.round(data.main?.feels_like)}&deg; C</p>
           <p>Pressure: {data.main?.pressure} hPa</p>
           <p>Humidity: {data.main?.humidity}%</p>
@@ -61,7 +61,7 @@ function City({ data, forecast, toggle, changeToggle, loading }) {
         </div>
       </div>
 
-      <div className="city_button-container">
+      <div className={styles.city_button_container}>
         {toggle ? (
           <IndeterminateCheckBoxIcon
             onClick={() => changeToggle()}
@@ -77,13 +77,13 @@ function City({ data, forecast, toggle, changeToggle, loading }) {
         )}
       </div>
       {toggle && (
-        <div className="city_forecast">
-          <h3 className="city_forecast-title">5 Day forecast</h3>
-          <div className="city_forecast-container">
+        <div className={styles.city_forecast}>
+          <h3 className={styles.city_forecast_title}>5 Day forecast</h3>
+          <div className={styles.city_forecast_container}>
             {forecast.map(
               (forecast, i) =>
                 forecast && (
-                  <div key={i} className="city_forecast-container-row">
+                  <div key={i} className={styles.city_forecast_container_row}>
                     <p>{forecast && dayname(forecast.dt)}</p>
                     <p>{Math.round(forecast.main?.temp)}&deg;</p>
                     <p>{forecast.weather && forecast.weather[0].main}</p>
