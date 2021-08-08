@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getWeather, getForecast } from './adapters/openweathermap';
-import './App.css';
+import styles from './App.module.scss';
 import Layout from './components/Layout';
 import City from './components/City';
 
@@ -16,6 +16,7 @@ function App() {
   const [forecast, setForecast] = useState([]);
 
   const [toggle, setToggle] = useState(true);
+  const [displayMessage, setDisplayMessage] = useState(false);
 
   const fiveDayForecast = [];
 
@@ -29,20 +30,26 @@ function App() {
 
   useEffect(() => {
     getWeather()
-      .then((res) => setData({
-        weather: capitalize(res.data.weather[0].description),
-        name: res.data.name,
-        icon: res.data.weather[0].icon,
-        main: res.data.main,
-        wind: res.data.wind,
-      }))
+      .then((res) => {
+        if (!res.data?.weather?.[0]) {
+          setDisplayMessage(true);
+          return;
+        }
+        setData({
+          weather: capitalize(res.data.weather[0].description),
+          name: res.data.name,
+          icon: res.data.weather[0].icon,
+          main: res.data.main,
+          wind: res.data.wind,
+        });
+      })
       .catch((err) => alert(err));
   }, []);
 
   useEffect(() => {
     if (toggle) {
       getForecast()
-        .then((res) => setForecast(res.data.list))
+        .then((res) => res.data.list && setForecast(res.data.list))
         .catch((err) => alert(err));
     }
   }, [toggle]);
@@ -50,12 +57,19 @@ function App() {
   return (
     <div className="App">
       <Layout>
-        <City
-          data={data}
-          fiveDayForecast={fiveDayForecast}
-          changeToggle={() => setToggle(!toggle)}
-          toggle={toggle}
-        />
+        { displayMessage ? (
+          <p className={styles.displayMessage}>
+            Sorry, something went wrong. Please try later.
+          </p>
+        )
+          : (
+            <City
+              data={data}
+              fiveDayForecast={fiveDayForecast}
+              changeToggle={() => setToggle(!toggle)}
+              toggle={toggle}
+            />
+          ) }
       </Layout>
     </div>
   );
