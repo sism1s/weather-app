@@ -1,16 +1,16 @@
-import { useState, useEffect } from "react";
-import { getWeather, getForecast } from "./adapters/openweathermap";
-import "./App.css";
-import Layout from "./components/Layout.jsx";
-import City from "./components/City.jsx";
+import React, { useState, useEffect } from 'react';
+import { getWeather, getForecast } from './adapters/openweathermap';
+import './App.css';
+import Layout from './components/Layout';
+import City from './components/City';
 
 function App() {
   const [data, setData] = useState({
-    weather: "",
-    name: "",
-    icon: "",
-    main: "",
-    wind: "",
+    weather: '',
+    name: '',
+    icon: '',
+    main: '',
+    wind: '',
   });
 
   const [forecast, setForecast] = useState([]);
@@ -29,23 +29,22 @@ function App() {
 
   useEffect(() => {
     getWeather()
-      .then((res) =>
-        setData({
-          weather: capitalize(res.data.weather[0].description),
-          name: res.data.name,
-          icon: res.data.weather[0].icon,
-          main: res.data.main,
-          wind: res.data.wind,
-        })
-      )
+      .then((res) => setData({
+        weather: capitalize(res.data.weather[0].description),
+        name: res.data.name,
+        icon: res.data.weather[0].icon,
+        main: res.data.main,
+        wind: res.data.wind,
+      }))
       .catch((err) => alert(err));
   }, []);
 
   useEffect(() => {
-    toggle &&
+    if (toggle) {
       getForecast()
         .then((res) => setForecast(res.data.list))
         .catch((err) => alert(err));
+    }
   }, [toggle]);
 
   return (
@@ -53,7 +52,7 @@ function App() {
       <Layout>
         <City
           data={data}
-          forecast={fiveDayForecast}
+          fiveDayForecast={fiveDayForecast}
           changeToggle={() => setToggle(!toggle)}
           toggle={toggle}
         />
