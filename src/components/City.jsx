@@ -104,7 +104,7 @@ function City({
           <div className={styles.city_forecast_container}>
             {fiveDayForecast.map(
               (forecast) => forecast && (
-              <div key={forecast.id} className={styles.city_forecast_container_row}>
+              <div key={forecast.dt} className={styles.city_forecast_container_row}>
                 <p>{forecast && dayname(forecast.dt)}</p>
                 <p>
                   {Math.round(forecast.main?.temp)}

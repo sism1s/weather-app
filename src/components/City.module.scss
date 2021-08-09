@@ -3,8 +3,8 @@
 .city {
   border: 3px solid #ffffff;
   border-radius: 50px;
-  height: 712px;
   width: 561px;
+  height: 712px;
   margin: 100px auto;
   color: #ffffff;
 
@@ -45,13 +45,13 @@
       }
     }
     &_icon img {
-      height: 75px;
       width: 76px;
+      height: 75px;
       margin-right: -20px;
 
       @include respond(phone-L) {
-        height: 50px;
         width: 50px;
+        height: 50px;
       }
     }
   }
