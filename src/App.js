@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { getWeather, getForecast } from './adapters/openweathermap';
 import styles from './App.module.scss';
-import Layout from './components/Layout';
-import City from './components/City';
+import Layout from './components/Layout/Layout';
+import City from './components/City/City';
+import { capitalize } from './constants/constants';
 
 function App() {
   const [data, setData] = useState({
@@ -22,10 +23,6 @@ function App() {
 
   for (let i = 0; i < forecast.length; i += 8) {
     fiveDayForecast.push(forecast[i]);
-  }
-
-  function capitalize(s) {
-    return s[0].toUpperCase() + s.slice(1);
   }
 
   useEffect(() => {
@@ -62,14 +59,17 @@ function App() {
             Sorry, something went wrong. Please try later.
           </p>
         )
-          : (
+          : (data.name
+            && (
             <City
               data={data}
               fiveDayForecast={fiveDayForecast}
               changeToggle={() => setToggle(!toggle)}
               toggle={toggle}
             />
+            )
           ) }
+
       </Layout>
     </div>
   );
